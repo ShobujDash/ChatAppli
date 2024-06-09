@@ -73,8 +73,6 @@ export const login = async (req, res) => {
       profilePhoto:user.profilePhoto
     });
 
-
-
   } catch (error) {
     console.log(error)
   }

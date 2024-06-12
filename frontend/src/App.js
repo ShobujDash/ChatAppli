@@ -1,28 +1,28 @@
-import './App.css';
-import { createBrowserRouter ,RouterProvider} from 'react-router-dom'
-import HomePage from './components/HomePage';
-import Signup from './components/Signup';
-import Login from './components/Login';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import HomePage from "./components/HomePage";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<HomePage/>
+    element: <HomePage/>,
   },
   {
     path: "/register",
-    element:<Signup/>
+    element: <Signup />,
   },
   {
     path: "/login",
-    element:<Login/>
+    element: <Login />,
   },
-])
+]);
 
 function App() {
   return (
-    <div className="p-4 h-screen flex items-center">
-      <RouterProvider router={ router} />
+    <div className="p-4 h-screen flex items-center justify-center">
+      <RouterProvider router={router} />
     </div>
   );
 }

@@ -21,8 +21,8 @@ export const register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     //profilePhoto  
-    const maleProfilePhoto = `https://avatar.iran.liara.run/public/boy/${username}`;
-    const femaleProfilePhoto = `https://avatar.iran.liara.run/public/girl/${username}`;
+    const maleProfilePhoto = `https://avatar.iran.liara.run/public/boy?username=${username}`;
+    const femaleProfilePhoto = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
 
     await User.create({
@@ -44,6 +44,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
+    
     if (!username || !password) {
        return res.status(400).json({ message: "All fields are required" });
     }

@@ -1,45 +1,42 @@
-import React,{useState} from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
 import { setAuthUser } from "../redux/userSlice";
 
 function Login() {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-   const [user, setUser] = useState({
-     username: "",
-     password: "",
-   });
- 
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
-   const submitHandler = async(e) => {
-     e.preventDefault();
-     try {
-        const res = await axios.post(
-          `http://localhost:8080/api/v1/user/login`,
-          user,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          }
-        );
-        navigate("/");  
-       toast.success("Login Successfully.") 
-       dispatch(setAuthUser(res.data))
-      } catch (error) {
-        console.log(error);
-      }
-     setUser({
-       username: "",
-       password: "",
-     });
-   };
-
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `http://localhost:8080/api/v1/user/login`,
+        user,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      navigate("/");
+      toast.success("Login Successfully.");
+      dispatch(setAuthUser(res.data));
+    } catch (error) {
+      console.log(error);
+    }
+    setUser({
+      username: "",
+      password: "",
+    });
+  };
 
   return (
     <div className="min-w-96 mx-auto">
@@ -77,7 +74,9 @@ function Login() {
             </Link>
           </div>
           <div>
-            <button type="submit" className="btn btn-block btn-sm mt-2 ">Login</button>
+            <button type="submit" className="btn btn-block btn-sm mt-2 ">
+              Login
+            </button>
           </div>
         </form>
       </div>
